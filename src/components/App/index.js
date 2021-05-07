@@ -12,17 +12,75 @@ import tasksData from 'src/data/tasks';
 
 class App extends React.Component {
   state = {
-    count: 0,
     tasks: tasksData,
+    taskLabel: '',
+  };
+
+  // fonction en charge d'ajouter une tache
+  addTask = () => {
+    const { taskLabel, tasks } = this.state;
+
+    const ids = tasks.map((task) => task.id);
+    const id = Math.max(...ids);
+    const newTask = {
+      id: id + 1,
+      label: taskLabel,
+      done: false,
+    };
+    console.log(newTask);
+    // const newTasks = [...tasks, newTask];
+    this.setState({
+      // version condensé de ce qu'il y a au dessus en com's.
+      tasks: [...tasks, newTask],
+      taskLabel: '',
+    });
+  }
+
+  // fonction en charge du changement de state tasklabel
+  setTaskLabel = (value) => {
+    this.setState({
+      taskLabel: value,
+    });
+  }
+
+  changeTaskDone = (taskId) => {
+    console.log('ici on change la valeur de la task', taskId);
+    const { tasks } = this.state;
+    const newTasks = tasks.map((task) => {
+      if (task.id === taskId) {
+        const newTask = {
+          ...task,
+          done: !task.done,
+        };
+
+        return newTask;
+      }
+      return task;
+    });
+
+    this.setState({
+      tasks: newTasks,
+    });
   }
 
   render() {
-    const { count, tasks } = this.state;
+    const { tasks, taskLabel } = this.state;
+    // eslint-disable-next-line arrow-body-style
+    const undoneTasks = tasks.filter((task) => !task.done);
+
+
     return (
       <div className="todolist">
-        <Form />
-        <Counter count={count} />
-        <List tasks={tasks} />
+        <Form
+          onFormSubmit={this.addTask}
+          inputValue={taskLabel}
+          onChangeInputValue={this.setTaskLabel}
+        />
+        <Counter count={undoneTasks.length} />
+        <List
+          tasks={tasks}
+          onChangeTaskDone={this.changeTaskDone}
+        />
       </div>
     );
   }

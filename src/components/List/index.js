@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 import Todo from './Todo';
 import './style.scss';
 
-function List({ tasks }) {
+function List({ tasks, onChangeTaskDone }) {
   // eslint-disable-next-line arrow-body-style
   const todoList = tasks.map((task) => {
     return (
       <Todo
         key={task.id}
         {...task}
+        onClickTodo={onChangeTaskDone}
       />
     );
   });
@@ -28,6 +29,7 @@ List.propTypes = {
     label: PropTypes.string.isRequired,
     done: PropTypes.bool.isRequired,
   })).isRequired,
+  onChangeTaskDone: PropTypes.func.isRequired,
 };
 
 export default List;
