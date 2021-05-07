@@ -4,12 +4,10 @@
   display: block;
   background: v.$light;
   border-radius: 3px;
-  padding: v.$light;
-  margin: v.$gutter/2 0;
+  padding: v.$gutter;
+  margin: v.$gutter / 2 0;
+  &--done {
+    opacity: 0.5;
+    text-decoration: line-through;
+  }
 }
-
-.list-item--done {
-  opacity: 0.5;
-  text-decoration: line-through;
-}
-

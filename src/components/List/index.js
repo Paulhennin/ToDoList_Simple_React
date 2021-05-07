@@ -7,14 +7,10 @@ import './style.scss';
 function List({ tasks }) {
   // eslint-disable-next-line arrow-body-style
   const todoList = tasks.map((task) => {
-    // pour chaque élément JSX d'une list/tableau on doit placer
-    // une prop key qui devra avoir une valeur unique
-    // attention: ne pas utiliser l'index courant fourni par map
     return (
       <Todo
         key={task.id}
-        label={task.label}
-        done={task.done}
+        {...task}
       />
     );
   });

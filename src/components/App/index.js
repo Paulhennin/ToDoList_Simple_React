@@ -9,26 +9,23 @@ import List from 'src/components/List';
 import tasksData from 'src/data/tasks';
 
 // == Composant
-/*
+
 class App extends React.Component {
+  state = {
+    count: 0,
+    tasks: tasksData,
+  }
+
   render() {
+    const { count, tasks } = this.state;
     return (
       <div className="todolist">
         <Form />
+        <Counter count={count} />
+        <List tasks={tasks} />
       </div>
     );
   }
-}
-*/
-
-function App() {
-  return (
-    <div className="todolist">
-      <Form />
-      <Counter count={4} />
-      <List tasks={tasksData} />
-    </div>
-  );
 }
 // == Export
 export default App;
