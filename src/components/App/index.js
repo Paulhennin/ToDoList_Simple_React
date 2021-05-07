@@ -5,7 +5,8 @@ import React from 'react';
 import './styles.scss';
 import Form from 'src/components/Form';
 import Counter from 'src/components/Counter';
-import taskData from 'src/data/tasks';
+import List from 'src/components/List';
+import tasksData from 'src/data/tasks';
 
 // == Composant
 /*
@@ -24,7 +25,8 @@ function App() {
   return (
     <div className="todolist">
       <Form />
-      <Counter />
+      <Counter count={4} />
+      <List tasks={tasksData} />
     </div>
   );
 }
