@@ -27,10 +27,7 @@ class App extends React.Component {
       label: taskLabel,
       done: false,
     };
-    console.log(newTask);
-    // const newTasks = [...tasks, newTask];
     this.setState({
-      // version condensé de ce qu'il y a au dessus en com's.
       tasks: [...tasks, newTask],
       taskLabel: '',
     });
@@ -44,7 +41,7 @@ class App extends React.Component {
   }
 
   changeTaskDone = (taskId) => {
-    console.log('ici on change la valeur de la task', taskId);
+    // ici on change la valeur de la task
     const { tasks } = this.state;
     const newTasks = tasks.map((task) => {
       if (task.id === taskId) {
